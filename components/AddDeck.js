@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { submitDeck } from '../utils/deck'
+
+import { addDeck } from '../actions/decks';
 import { connect } from 'react-redux'
 
 class AddDeck extends Component {
@@ -7,7 +10,8 @@ class AddDeck extends Component {
   constructor (props){
     super(props)
     this.state = {
-      title: ''
+      title: '',
+      description: ''
     }
   }
 
@@ -21,10 +25,25 @@ class AddDeck extends Component {
   }
   submit = () => {
 
+    // use deck title as the key
+    const key = this.state.title
+    const deck = this.state
+
+    // add it to the store
+    this.props.dispatch(addDeck({
+      [key]: deck
+    }))
+
+    this.setState(() => ({
+      title: '',
+      description: ''
+    }))
+    console.log('!!!!key', key)
+    console.log('!!!!deck', deck)
+    submitDeck({ key: key, deck })
   }
   render() {
 
-  console.log("waaaa")
   return (
     <View>
       <Text>What's the name of your new Deck?</Text>
