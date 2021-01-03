@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 import { receiveDecks } from '../actions/decks'
 import { fetchDecksResults } from '../utils/api'
 import { connect } from 'react-redux'
+
+const DeckSummary = (deckInfo) => (
+  <View 
+    style={styles.card}
+    key={deckInfo.title}
+    >
+      <Text>
+        Deck Name: {deckInfo.title}
+      </Text>
+    </View>
+)
 
 class Decks extends Component {
   componentDidMount () {
@@ -14,13 +26,13 @@ class Decks extends Component {
   }
 
   render() {
-
   return (
     <View>
-      <Text>
-      hiii decks in store: {
-      JSON.stringify(this.props.decks)
-      }</Text>
+        <Text>DECKS OF CARDS</Text>
+        { Object.keys(this.props.decks).map((key)=>DeckSummary(this.props.decks[key]))}
+        <TouchableOpacity>
+          <Text>Add A NEW DECK</Text>
+        </TouchableOpacity>
     </View>
   );
   }
@@ -40,6 +52,11 @@ const styles = StyleSheet.create({
   countContainer: {
     alignItems: "center",
     padding: 10
+  },
+  card:{
+    padding: 10,
+    border: '1px solid black',
+    margin: '10px'
   }
 });
 

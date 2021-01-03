@@ -6,12 +6,10 @@ import { addDeck } from '../actions/decks';
 import { connect } from 'react-redux'
 
 class AddDeck extends Component {
-
   constructor (props){
     super(props)
     this.state = {
       title: '',
-      description: ''
     }
   }
 
@@ -36,10 +34,7 @@ class AddDeck extends Component {
 
     this.setState(() => ({
       title: '',
-      description: ''
     }))
-    console.log('!!!!key', key)
-    console.log('!!!!deck', deck)
     submitDeck({ key: key, deck })
   }
   render() {
@@ -54,6 +49,7 @@ class AddDeck extends Component {
       />
       <TouchableOpacity
         style={styles.button}
+        disabled={!this.state.title}
         onPress={this.submit}
       >
         <Text>Create</Text>
