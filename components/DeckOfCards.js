@@ -5,16 +5,16 @@ import { receiveDecks } from '../actions/decks'
 import { fetchDecksResults } from '../utils/api'
 import { connect } from 'react-redux'
 
-const DeckSummary = (deckInfo) => (
+const CardSummary = (cardInfo) => (
   <View 
     style={styles.card}
-    key={deckInfo.title}
+    key={cardInfo.question}
     >
       <Text>
-        Deck Name: {deckInfo.title}
+        Question: {cardInfo.question}
       </Text>
       <TouchableOpacity>
-          <Text>View flashCards</Text>
+          <Text>View Answer</Text>
       </TouchableOpacity>
     </View>
 )
@@ -31,8 +31,8 @@ class Decks extends Component {
   render() {
   return (
     <View>
-        <Text>DECKS OF CARDS</Text>
-        { Object.keys(this.props.decks).map((key)=>DeckSummary(this.props.decks[key]))}
+        <Text>ALL CARDS</Text>
+        { this.props.decks["hi"] && Object.keys(this.props.decks["hi"].cards).map((key)=>CardSummary(this.props.decks["hi"].cards[key]))}
         <TouchableOpacity>
           <Text>Add A NEW DECK</Text>
         </TouchableOpacity>

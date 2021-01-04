@@ -1,8 +1,16 @@
-export const CREATE_CARD = 'CREATE_CARD'
+export const ADD_CARD = 'ADD_CARD'
+export const RECEIVE_CARDS = 'RECEIVE_CARDS'
 
-export function createCard (newCard) {
+export function receiveCards (cards) {
   return {
-    type: CREATE_CARD,
+    type: RECEIVE_CARDS,
+    cards
+  }
+}
+
+export function addCard (newCard) {
+  return {
+    type: ADD_CARD,
     newCard
   }
 }
