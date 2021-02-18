@@ -5,6 +5,7 @@ import AddDeck from './components/AddDeck';
 import AddCard from './components/AddCard';
 import DeckOfCards from './components/DeckOfCards';
 import Decks from './components/Decks';
+import Home from './components/Home';
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from './reducers';
@@ -25,12 +26,16 @@ export default function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
             if (route.name === 'Home') {
               iconName = focused
                 ? 'ios-information-circle'
                 : 'ios-information-circle-outline';
-            } else if (route.name === 'AddDeck') {
+            } if (route.name === 'Decks') {
+              iconName = focused
+                ? 'ios-information-circle'
+                : 'ios-information-circle-outline';
+            }             
+            else if (route.name === 'AddDeck') {
               iconName = focused 
                 ? 'ios-albums' 
                 : 'ios-albums';
@@ -47,8 +52,9 @@ export default function App() {
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
-        >
-          <Tab.Screen name="Home" component={Decks} />
+        >         
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Decks" component={Decks} />
           <Tab.Screen name="AddDeck" component={AddDeck} />
           <Tab.Screen name="DeckOfCards" component={DeckOfCards} />
           <Tab.Screen name="AddCard" component={AddCard} />

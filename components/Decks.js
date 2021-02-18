@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
+import { createStackNavigator } from '@react-navigation/stack';
+import DeckOfCards from './DeckOfCards'
 import { receiveDecks } from '../actions/decks'
 import { fetchDecksResults } from '../utils/api'
 import { connect } from 'react-redux'
 
-const DeckSummary = (deckInfo) => (
+const Stack = createStackNavigator();
+
+const DeckSummary = (deckInfo, navigation) => (
   <View 
     style={styles.card}
     key={deckInfo.title}
@@ -13,7 +16,9 @@ const DeckSummary = (deckInfo) => (
       <Text>
         Deck Name: {deckInfo.title}
       </Text>
-      <TouchableOpacity>
+      <TouchableOpacity
+      onPress={() => navigation.navigate('DeckOfCards')}
+      >
           <Text>View flashCards</Text>
       </TouchableOpacity>
     </View>
@@ -32,7 +37,7 @@ class Decks extends Component {
   return (
     <View>
         <Text>DECKS OF CARDS</Text>
-        { Object.keys(this.props.decks).map((key)=>DeckSummary(this.props.decks[key]))}
+        { Object.keys(this.props.decks).map((key)=>DeckSummary(this.props.decks[key], this.props.navigation))}
         <TouchableOpacity>
           <Text>Add A NEW DECK</Text>
         </TouchableOpacity>
