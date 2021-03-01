@@ -35,7 +35,12 @@ class AddDeck extends Component {
     this.setState(() => ({
       title: '',
     }))
-    submitDeck({ key: key, deck })
+
+    submitDeck({ key: key, deck }).then(
+      ()=>{
+        this.props.navigation.navigate('Decks')   
+      }
+    )
   }
   render() {
 

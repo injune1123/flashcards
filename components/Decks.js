@@ -8,7 +8,9 @@ import { connect } from 'react-redux'
 
 const Stack = createStackNavigator();
 
-const DeckSummary = (deckInfo, navigation) => (
+const DeckSummary = (deckInfo, navigation) => {
+  console.log("deckInfo", deckInfo)
+  return (
   <View 
     style={styles.card}
     key={deckInfo.title}
@@ -23,7 +25,7 @@ const DeckSummary = (deckInfo, navigation) => (
       </TouchableOpacity>
     </View>
 )
-
+  }
 class Decks extends Component {
   componentDidMount () {
     const { dispatch } = this.props
@@ -34,12 +36,19 @@ class Decks extends Component {
   }
 
   render() {
+    console.log('!!!this.props at decks', this.props)
   return (
     <View style={styles.container}>
-        <Text>DECKS OF CARDS</Text>
-        { Object.keys(this.props.decks).map((key)=>DeckSummary(this.props.decks[key], this.props.navigation))}
+        {!Object.keys(this.props.decks).length && <Text>There is no decks yet</Text>}
+        {!!Object.keys(this.props.decks).length && 
+        <View>
+          <Text>DECKS OF CARDS</Text>
+          { Object.keys(this.props.decks).map((key)=>DeckSummary(this.props.decks[key], this.props.navigation))}
+        </View>  
+        }   
         <TouchableOpacity>
-          <Text>Add A NEW DECK</Text>
+          <Text  onPress={() => this.props.navigation.navigate('AddDeck')}>     
+            Add A NEW DECK</Text>
         </TouchableOpacity>
     </View>
   );

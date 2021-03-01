@@ -3,7 +3,6 @@ import { combineReducers } from 'redux';
 import { ADD_DECK, RECEIVE_DECKS } from '../actions/decks'
 import { ADD_CARD } from '../actions/cards'
 
-
 function decks (state = {}, action) {
   switch(action.type) {
     case RECEIVE_DECKS:
