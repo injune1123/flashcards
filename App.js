@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from "react";
 import { StyleSheet, View } from 'react-native';
@@ -23,6 +24,7 @@ export default function App() {
       <StatusBar style="auto"/>
       <NavigationContainer>
         <Tab.Navigator
+        initialRouteName="Home"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;

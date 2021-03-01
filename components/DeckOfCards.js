@@ -30,7 +30,7 @@ class Decks extends Component {
 
   render() {
   return (
-    <View>
+    <View style={styles.container}>
         <Text>ALL CARDS</Text>
         { this.props.decks["hi"] && Object.keys(this.props.decks["hi"].cards).map((key)=>CardSummary(this.props.decks["hi"].cards[key]))}
         <TouchableOpacity>

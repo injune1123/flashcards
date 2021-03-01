@@ -40,7 +40,7 @@ class AddDeck extends Component {
   render() {
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>What's the name of your new Deck?</Text>
       <TextInput
         style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}

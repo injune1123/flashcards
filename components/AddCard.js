@@ -57,7 +57,7 @@ class AddCard extends Component {
   render() {
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Add a question in the box below</Text>
       <TextInput
         style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}

@@ -1,46 +1,56 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux'
 
 
-
 class Home extends Component {
-
+  
   render() {
-  return (
-    <View>
-        <Text>Welcome to Flash Learning</Text>
-        <Text>View Decks of flash cards</Text>
-        <Text>Create a new Deck of cards</Text>
-        <Text>Start a quiz</Text>
-    </View>
-  );
+    const {navigation} = this.props
+    return (
+      <View style={styles.container}>
+          <Text style={styles.text}>Welcome to Flash Learning</Text>
+          <View style={[ styles.row]}>
+            <Button
+              title="View Decks of flash cards"
+              onPress={() => navigation.navigate('Decks')}
+            />
+           </View>
+           <View style={[ styles.row]}>
+            <Button
+              title="Create a new Deck of cards"
+              onPress={() => navigation.navigate('AddDeck')}
+            />
+          </View>
+          <View style={[ styles.row]}>
+            <Button
+              title="Start a quiz"
+              onPress={() => navigation.navigate('AddDeck')}
+            />
+          </View>
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 10
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
+  text: {
+    color: 'rgb(59,108,212)',
+    fontSize: 42,
+    fontWeight: '100',
+    textAlign: 'center',
   },
-  countContainer: {
-    alignItems: "center",
-    padding: 10
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  card:{
-    padding: 10,
-    borderColor: 'black',
-    borderWidth: 1,
-    margin: 10
-  }
-});
+})
 
 
 
